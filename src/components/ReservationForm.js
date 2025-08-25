@@ -1,7 +1,16 @@
 import { useState } from "react";
 
 function ReservationForm() {
-  const [date, setDate] = useState("");
+  const formatCurrentDate = () => {
+    const now = new Date();
+    const yearString = now.getFullYear();
+    const monthString = String(now.getMonth() + 1).padStart(2, "0");
+    const dateString = String(now.getDate()).padStart(2, "0");
+
+    return `${yearString}-${monthString}-${dateString}`;
+  };
+
+  const [date, setDate] = useState(formatCurrentDate());
   const [time, setTime] = useState("");
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState("none");
@@ -25,7 +34,13 @@ function ReservationForm() {
   return (
     <form>
       <label htmlFor="date">Date</label>
-      <input id="date" type="date" value={date} onChange={handleDateChange} />
+      <input
+        id="date"
+        type="date"
+        value={date}
+        min={formatCurrentDate}
+        onChange={handleDateChange}
+      />
 
       <label htmlFor="time">Time</label>
       <input id="time" type="time" value={time} onChange={handleTimeChange} />
@@ -35,6 +50,7 @@ function ReservationForm() {
         id="guests"
         type="number"
         value={guests}
+        min="1"
         onChange={handleGuestsChange}
       />
 
