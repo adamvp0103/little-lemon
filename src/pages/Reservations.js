@@ -1,11 +1,13 @@
+import ReservationForm from "../components/ReservationForm";
+
 function Reservations() {
   return (
     <>
       <Header />
       <Nav />
       <Main>
-        <h1>Reservations</h1>
-        <p>This is the reservations page.</p>
+        <h1>Reserve a Table</h1>
+        <ReservationForm />
       </Main>
       <Footer />
     </>
